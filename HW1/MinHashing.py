@@ -34,15 +34,12 @@ class MinHashing:
 
         nSignature, (nShingles, n_docs) = self.nSignature, charMatrix.shape
 
-        # initialize the signature matrix with zeros
+        # initialize the signature matrix
         signature = np.zeros((nSignature, n_docs), dtype=np.int32)
 
         for idx in range(nSignature):
-            # permute the rows of the characteristic matrix
             rand_idxs = np.random.permutation(nShingles)
             charMatrix_perm = charMatrix[rand_idxs, :]
-
-            # the minhash is the row-wise position of the first one
             signature[idx, :] = np.argmax(charMatrix_perm, axis=0)
 
         return signature
