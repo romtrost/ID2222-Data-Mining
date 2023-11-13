@@ -36,8 +36,8 @@ print(charMatrix)
 minHashing = MinHashing(kHashFunctions)
 
 # computing signatures using characteristic matrix
-signatureHash = minHashing.compute_signature_hash(charMatrix)
-signaturePerm = minHashing.compute_signature_perm(charMatrix)
+signatureHash = minHashing.compute_signature_hashing(charMatrix)
+signaturePerm = minHashing.compute_signature_permutation(charMatrix)
 
 # comparing signatures
 signatureHashSimilarity = CompareSignatures.signature_similarity(signatureHash, document0, document1)

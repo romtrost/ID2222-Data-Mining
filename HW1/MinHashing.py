@@ -6,7 +6,7 @@ class MinHashing:
     def __init__(self, nSignature=500):
         self.nSignature = nSignature
 
-    def compute_signature_hash(self, charMatrix):
+    def compute_signature_hashing(self, charMatrix):
         """ Returns the signature from hashing. """
 
         nSignature, (nShingles, n_docs) = self.nSignature, charMatrix.shape
@@ -29,7 +29,7 @@ class MinHashing:
 
         return signature
 
-    def compute_signature_perm(self, charMatrix):
+    def compute_signature_permutation(self, charMatrix):
         """ Returns the signature from permutation. """
 
         nSignature, (nShingles, n_docs) = self.nSignature, charMatrix.shape

@@ -25,12 +25,11 @@ class LSH:
     def find_candidates(self, signature):
         """ Return candidates to calculate similarity for. """
 
-        num_bands, (n_signature, n_docs) = self.num_bands, signature.shape
-        rows_band = math.ceil(n_signature / num_bands)
+        num_signature = signature.shape[0]
+        rows_band = math.ceil(num_signature / self.num_bands)
 
         candidate_pairs = set()
-
-        for band_idx in range(num_bands):
+        for band_idx in range(self.num_bands):
 
             band_start, band_end = band_idx * rows_band, (band_idx + 1) * rows_band
             band = signature[band_start:band_end]
