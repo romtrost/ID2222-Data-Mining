@@ -61,7 +61,7 @@ class Apriori:
 
             print("Number of frequent item sets found for k = " + str(k) + " is",  len(self.L[k]), "| execution time:", time.time() - start_time_itemset )
             start_time_itemset=time.time()
-            k+=1
+            k += 1
 
             # gets all candidates
             C_k = self.get_candidates(self.L[k-1], k)
