@@ -6,10 +6,10 @@ from CompareSignatures import CompareSignatures
 from LSH import LSH
 
 # initialise variables
-kShingles = 3           # number of shingles
-kHashFunctions = 100    # number of hash functions
+kShingles = 3                     # number of shingles
+kHashFunctions = 100              # number of hash functions
 document0, document1 = 0, 1       # documents to compare
-documents = read_dataset(dataset_name="News_Category_Dataset_v3.json", num_documents=1000)
+documents = read_dataset(dataset_name="News_Category_Dataset_v3.json", num_documents=10)
 
 print(f"### Comparing documents {document0} and {document1} using {kShingles} shingles and {kHashFunctions} hash functions. ###")
 print(f"### Document {document0} -->", documents[document0])
@@ -36,21 +36,22 @@ print(charMatrix)
 minHashing = MinHashing(kHashFunctions)
 
 # computing signatures using characteristic matrix
-signatureHash = minHashing.compute_signature_hashing(charMatrix)
 signaturePerm = minHashing.compute_signature_permutation(charMatrix)
+print("--- Signature permutation ---")
+print(signaturePerm)
 
 # comparing signatures
-signatureHashSimilarity = CompareSignatures.signature_similarity(signatureHash, document0, document1)
+# signatureHashSimilarity = CompareSignatures.signature_similarity(signatureHash, document0, document1)
 signaturePermSimilarity = CompareSignatures.signature_similarity(signaturePerm, document0, document1)
 print("--- Signature similarity ---")
-print(f'Signature hashing similarity between documents {document0} & {document1}:', signatureHashSimilarity)
+# print(f'Signature hashing similarity between documents {document0} & {document1}:', signatureHashSimilarity)
 print(f'Signature permutation similarity between documents {document0} & {document1}:', signaturePermSimilarity)
 
-threshold = 0.3
-num_bands = 100
+threshold = 0.25
+num_bands = 20
 lsh = LSH(num_bands=num_bands, threshold=threshold)
 
 # finding similar documents using LSH
-similarDocuments = lsh.find_similar(signatureHash)
+similarDocuments = lsh.find_similar(signaturePerm)
 print("--- Similar documents using LSH ---")
 print(f"Similar documents found using LSH with {num_bands} and a threshold of {threshold}:", similarDocuments)
