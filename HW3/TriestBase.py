@@ -36,7 +36,7 @@ class TriestBase:
 
             neighbors = self.subgraph.adjency.get(u) & self.subgraph.adjency.get(v)
 
-            # update the global/local counters of the shared neighborhood
+            # update the global/local counters
             for neighbor in neighbors:
                 self.glo_count += value
                 self.loc_count[neighbor] += value
@@ -53,7 +53,7 @@ class TriestBase:
 
         t = 0
         for u, v in stream_edges_dataset:
-            # make sure this edge is not present in our subgraph
+            # make sure this edge is not in our subgraph
             if not (u, v) in self.subgraph.edges:
                 t += 1
                 is_sampled = self.sample_edge(t)
