@@ -22,11 +22,6 @@ class Apriori:
                     new_key = p[:(k-1)] + (q[k-2],)
                     C_k[new_key] = 0
 
-        # Prune candidates that have a subset not in L_(k-1)
-        remove_list=[c for c in C_k for s in itertools.combinations(c, k-1) if s not in L]
-        for i in remove_list:
-            C_k.pop(i, None)
-
         return C_k
 
     def algorithm(self):
